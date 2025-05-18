@@ -1,0 +1,352 @@
+/* Variáveis globais de cores e temas */
+:root {
+    --primary-color: #7289da;    /* Cor principal do tema */
+    --primary-hover: #5b6eaf;    /* Cor hover do tema */
+    --sidebar-bg: #2f3136;       /* Cor de fundo da barra lateral */
+    --main-bg: #36393f;          /* Cor de fundo principal */
+    --text-color: #dcddde;       /* Cor do texto padrão */
+    --heading-color: #fff;       /* Cor dos títulos */
+    --link-color: #00b0f4;       /* Cor dos links */
+    --menu-hover: rgba(255, 255, 255, 0.1);  /* Cor hover do menu */
+    --code-bg: rgba(0, 0, 0, 0.3);          /* Cor de fundo do código */
+    --copy-icon-color: #ffffff;  /* Cor do ícone de copiar */
+    --copy-icon-hover: #007bff;  /* Cor do ícone de copiar ao passar o mouse */
+    --copy-success: #28a745;     /* Cor de sucesso ao copiar */
+}
+
+/* Reset básico e scripts help de fonte base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos do corpo da página */
+body {
+    font: 12px 'Segoe UI', Tahoma, Geneva, sans-serif;
+    background: var(--main-bg);
+    color: var(--text-color);
+    line-height: 1.4;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;  /* Previne scroll horizontal */
+}
+
+/* Container principal flexível */
+.container {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+}
+
+/* Estilização da barra lateral */
+.sidebar {
+    width: 250px;       /* Reduzido para melhor aproveitamento do espaço */
+    background: var(--sidebar-bg);
+    padding: 1rem;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    transition: transform .3s cubic-bezier(.4,0,.2,1);
+    box-shadow: 2px 0 8px rgba(0,0,0,.2);
+    z-index: 1000;
+}
+
+/* Estilização do logo */
+.logo {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 12px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* Ícone do logo */
+.logo i {
+    font-size: 48px;    /* Reduzido proporcionalmente */
+    color: var(--primary-color);
+    margin-bottom: 12px;
+    transition: transform .3s;
+}
+
+/* Efeito hover no ícone do logo */
+.logo i:hover {
+    transform: scale(1.1);
+}
+
+/* Título do logo */
+.logo h1 {
+    font-size: 20px;    /* Reduzido proporcionalmente */
+    color: var(--text-color);
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Lista de navegação */
+.nav-menu {
+    list-style: none;
+}
+
+/* Item da navegação */
+.nav-item {
+    margin-bottom: 15px;    /* Aumenta o espaçamento vertical entre cada item do menu para 70px */
+}
+
+/* Link da navegação */
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: all .3s;
+    font: 500 14px sans-serif;
+}
+
+/* Efeito hover no link */
+.nav-link:hover {
+    background: var(--menu-hover);
+    transform: translateX(5px);
+}
+
+/* Link ativo */
+.nav-link.active {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 2px 8px rgba(114,137,218,.3);
+}
+
+/* Ícones nos links */
+.nav-link i {
+    margin-right: 10px;
+    width: 16px;
+    font-size: 14px;
+}
+
+/* Conteúdo principal */
+.main-content {
+    margin-left: 250px;
+    padding: 1.5rem;
+    flex: 1;
+    width: calc(100% - 250px); /* Garante que o conteúdo não ultrapasse a largura */
+    min-height: 100vh;
+}
+
+/* Seções de conteúdo */
+.section {
+    background: rgba(0,0,0,.2);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+}
+
+/* Seção ativa */
+.section.active {
+    display: block;
+    animation: fadeIn .4s ease;
+}
+
+/* Animação de fade in */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilos dos títulos */
+h1, h2, h3 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+    padding-bottom: .6rem;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+/* Título principal */
+h1 { font-size: 24px; }
+
+/* Subtítulo nível 2 */
+h2 { font-size: 20px; }
+
+/* Subtítulo nível 3 */
+h3 { font-size: 18px; }
+
+/* Parágrafos e texto de detalhes */
+p, .detail-text {
+    font-size: 14px;
+    margin-bottom: 1rem;
+}
+
+/* Blocos de código inline */
+code {
+    background: var(--code-bg);
+    padding: .3rem .6rem;
+    border-radius: 6px;
+    font: 16px 'Fira Code', monospace;
+}
+
+/* Blocos de código maiores */
+.code-block {
+    background: var(--code-bg);
+    padding: 1.2rem;
+    border-radius: 12px;
+    margin: 1.2rem 0;
+    overflow-x: auto;
+    border: 1px solid rgba(255,255,255,.1);
+}
+
+/* Botão do menu mobile */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1001;
+    background: var(--primary-color);
+    border: none;
+    color: white;
+    padding: .8rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all .3s;
+    box-shadow: 0 4px 12px rgba(114,137,218,.3);
+}
+
+/* Hover do botão mobile */
+.menu-toggle:hover {
+    background: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+/* Ícone do botão mobile */
+.menu-toggle i {
+    font-size: 1.2rem;
+}
+
+/* Overlay do menu mobile */
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+/* Overlay ativo */
+.overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Media queries para responsividade */
+@media (max-width: 1024px) {
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.active { transform: translateX(0); }
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 4rem 1rem 1.5rem;
+    }
+    .menu-toggle { display: flex; }
+}
+
+@media (max-width: 768px) {
+    body { font-size: 11px; }
+    h1 { font-size: 22px; }
+    h2 { font-size: 18px; }
+    h3 { font-size: 16px; }
+}
+
+@media (max-width: 480px) {
+    .main-content { padding: 4.5rem .8rem 1.5rem; }
+    .modal-content {
+        width: 95%;
+        padding: 1rem;
+    }
+    h1 { font-size: 20px; }
+    h2 { font-size: 16px; }
+    h3 { font-size: 14px; }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 320px) {
+    body { font-size: 13px; }
+    .main-content { padding: 4rem .5rem 1rem; }
+}
+
+/* Ajustes para telas muito grandes */
+@media (min-width: 1920px) {
+    body { font-size: 18px; }
+    .sidebar { width: 350px; }
+    .main-content {
+        margin-left: 350px;
+        width: calc(100% - 350px);
+    }
+}
+
+/* Estilização da scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--sidebar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-hover);
+}
+
+.code-container {
+    position: relative;
+    background: #000;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    font: 14px 'Courier New', monospace;
+    color: #fff;
+    margin: 20px 0;
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+.code-container pre {
+    margin: 0;
+    line-height: 1.5;
+    white-space: pre-line;
+    word-wrap: break-word;
+}
+
+.code-container code {
+    display: block;
+}
+
+.copy-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 00-2 2v14a2 2 0 002 2h11a2 2 0 002-2V7a2 2 0 00-2-2m-3-4H4a2 2 0 00-2 2v14h2V3h12V1z"/></svg>') no-repeat center;
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 00-2 2v14a2 2 0 002 2h11a2 2 0 002-2V7a2 2 0 00-2-2m-3-4H4a2 2 0 00-2 2v14h2V3h12V1z"/></svg>') no-repeat center;
+    transition: background-color .3s;
+}
+
+.copy-icon:hover {
+    background: #007bff;
+}
+
+.copy-icon.copied {
+    background: #28a745;
+}
